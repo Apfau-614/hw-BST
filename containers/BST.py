@@ -196,7 +196,7 @@ class BST(BinaryTree):
         Removes value from the BST.
         If value is not in the BST, it does nothing.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
 
         HINT:
@@ -205,14 +205,34 @@ class BST(BinaryTree):
         HINT:
         Use a recursive helper function.
         '''
+        self.root = BST._remove(value, self.root)
+
+    @staticmethod
+    def _remove(value, node):
+        if node is None:
+            return None
+        if value < node.value:
+            node.left = BST._remove(value, node.left)
+        elif value > node.value:
+            node.right = BST._remove(value, node.right)
+        else:
+            if node.left is None:
+                return node.right
+            if node.right is None:
+                return node.left
+            node.value = BST._find_smallest(node.right)
+            node.right = BST._remove(node.value, node.right)
+        return node
 
     def remove_list(self, xs):
         '''
         Given a list xs, remove each element of xs from self.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
 
         HINT:
         See the insert_list function.
         '''
+        for x in xs:
+            self.remove(x)
