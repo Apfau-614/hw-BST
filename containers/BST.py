@@ -15,11 +15,13 @@ class BST(BinaryTree):
 
     def __init__(self, xs=None):
         '''
-        FIXME:
+        FIXEDME:
         If xs is a list (i.e. xs is not None),
         then each element of xs needs to be inserted into the BST.
         '''
         super().__init__()
+        if xs is not None:
+            self.insert_list(xs)
 
     def __repr__(self):
         '''
@@ -52,7 +54,7 @@ class BST(BinaryTree):
     @staticmethod
     def _is_bst_satisfied(node):
         '''
-        FIXME:
+        FIXEDME:
         The current implementation has a bug:
         it only checks if the children of the current node are less than/greater than,
         rather than ensuring that all nodes to the left/right are less than/greater than.
@@ -63,12 +65,12 @@ class BST(BinaryTree):
         '''
         ret = True
         if node.left:
-            if node.value >= node.left.value:
+            if node.value >= BST._find_largest(node.right):
                 ret &= BST._is_bst_satisfied(node.left)
             else:
                 ret = False
         if node.right:
-            if node.value <= node.right.value:
+            if node.value <= BST._find_smallest(node.right):
                 ret &= BST._is_bst_satisfied(node.right)
             else:
                 ret = False
@@ -78,24 +80,43 @@ class BST(BinaryTree):
         '''
         Inserts value into the BST.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
 
         HINT:
         Create a staticmethod helper function following the pattern of _is_bst_satisfied.
         '''
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            BST._insert(value, self.root)
+
+    @statisticmethod
+    def _insert(value, node):
+        if value < node.value:
+            if node.left is None:
+                node.left = Node(value)
+            else:
+                BST._insert(value, node.left)
+        elif value > node.value:
+            if node.right is None:
+                node.right = Node(value)
+            else:
+                BST._insert(value, node.right)
 
     def insert_list(self, xs):
         '''
         Given a list xs, insert each element of xs into self.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
 
         HINT:
         Repeatedly call the insert method.
         You cannot get this method to work correctly until you have gotten insert to work correctly.
         '''
+        for x in xs:
+            self.insert(x)
 
     def __contains__(self, value):
         '''
@@ -107,16 +128,25 @@ class BST(BinaryTree):
         '''
         Returns whether value is contained in the BST.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
         '''
+        return BST._find(value, self.root)
 
     @staticmethod
     def _find(value, node):
         '''
-        FIXME:
+        FIXEDME:
         Implement this function.
         '''
+        if node is None:
+            return False
+        if value < node.value:
+            return BST._find(value, node.left)
+        elif value > node.value:
+            return BST._find(value, node.right)
+        else:
+            return True
 
     def find_smallest(self):
         '''
@@ -142,12 +172,24 @@ class BST(BinaryTree):
         '''
         Returns the largest value in the tree.
 
-        FIXME:
+        FIXEDME:
         Implement this function.
 
         HINT:
         Follow the pattern of the _find_smallest function.
         '''
+        if self.root is None:
+            raise ValueError('Nothing in the tree')
+        else:
+            return BST._find_largest(self.root)
+
+    @staticmethod
+    def _find_largest(node):
+        assert node is not None
+        if node.right is None:
+            return node.value
+        else:
+            return BST._find_largest(node.right)
 
     def remove(self, value):
         '''
