@@ -65,7 +65,7 @@ class BST(BinaryTree):
         '''
         ret = True
         if node.left:
-            if node.value >= BST._find_largest(node.right):
+            if node.value >= BST._find_largest(node.left):
                 ret &= BST._is_bst_satisfied(node.left)
             else:
                 ret = False
