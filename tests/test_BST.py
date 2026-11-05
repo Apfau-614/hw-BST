@@ -96,7 +96,7 @@ def test__BST_insert(xs):
         bst.insert(x)
         assert x in bst.to_list('inorder')
         assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST_insert_list(xs):
@@ -104,7 +104,7 @@ def test__BST_insert_list(xs):
     bst = BST()
     bst.insert_list(xs)
     assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST___init__(xs):
@@ -131,15 +131,12 @@ def test__BST___contains__2(xs):
     Checks that if a value is NOT in the bst then __contains__ returns False
     '''
     xs = list(set(xs))
+    bst = BST(xs)
     if len(xs)>0:
-        while True:
+        for i in range(1000):
             x = random.uniform(min(xs)-1,max(xs)+1)
             if x not in xs:
-                break
-    else:
-        x = 10
-    bst = BST(xs)
-    assert x not in bst
+                assert x not in bst
 
 
 @given(xs=ints)
