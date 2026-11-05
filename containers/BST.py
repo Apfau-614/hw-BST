@@ -179,7 +179,7 @@ class BST(BinaryTree):
         Follow the pattern of the _find_smallest function.
         '''
         if self.root is None:
-            raise ValueError('Nothing in the tree')
+            raise ValueError('Nothing in tree')
         else:
             return BST._find_largest(self.root)
 
