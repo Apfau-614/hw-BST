@@ -158,7 +158,6 @@ class BinaryTree():
             traversal.append(start.value)
         return traversal
 
-
     def __len__(self):
         '''
         Returns the number of elements contained in the tree.
@@ -200,7 +199,6 @@ class BinaryTree():
         See how the __len__ method calls its helper staticmethod.
         '''
         return BinaryTree._height(self.root)
-
 
     @staticmethod
     def _height(node):
