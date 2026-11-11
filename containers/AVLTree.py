@@ -136,7 +136,7 @@ class AVLTree():
         But both the insert function needs the rebalancing code,
         so I recommend including that code here.
         '''
-                balance = AVLTree._balance_factor(node)
+        balance = AVLTree._balance_factor(node)
         if balance > 1:
             if AVLTree._balance_factor(node.left) < 0:
                 node.left = AVLTree._left_rotate(node.left)
