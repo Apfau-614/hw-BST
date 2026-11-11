@@ -68,7 +68,7 @@ class BST(BinaryTree):
             return BST._is_bst_satisfied(self.root)
         return True
 
-    def __iter__(self)
+    def __iter__(self):
         return iter(self.to_list('inorder'))
 
     @staticmethod
