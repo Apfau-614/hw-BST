@@ -1,6 +1,6 @@
 '''
 This file implements the Binary Search Tree data structure.
-tThe functions in this file are considerably harder than the functions in the BinaryTree file.
+The functions in this file are considerably harder than the functions in the BinaryTree file.
 '''
 
 from containers.BinaryTree import BinaryTree, Node
@@ -39,6 +39,23 @@ class BST(BinaryTree):
         '''
         return type(self).__name__ + '(' + str(self.to_list('inorder')) + ')'
 
+    def __eq__(self, t2):
+        '''
+        This method checks to see if the contents of self and t2 are equal.
+        The expression `a == b` desugars to `a.__eq__(b)`.
+
+        NOTE:
+        We only care about "semantic" equality,
+        and not "syntactic" equality.
+        That is, we do not care about the tree structure itself,
+        and only care about the contents of what the tree contains.
+
+        HINT:
+        Convert the contents of both trees into a sorted list,
+        then compare those sorted lists for equality.
+        '''
+        return sorted(self.to_list('inorder')) == sorted(t2.to_list('inorder'))
+
     def is_bst_satisfied(self):
         '''
         Whenever you implement a data structure,
@@ -50,6 +67,9 @@ class BST(BinaryTree):
         if self.root:
             return BST._is_bst_satisfied(self.root)
         return True
+
+    def __iter__(self):
+        return iter(self.to_list('inorder'))
 
     @staticmethod
     def _is_bst_satisfied(node):
