@@ -128,7 +128,7 @@ class AVLTree():
             node.right = AVLTree._insert(value, node.right)
         return AVLTree._rebalance(node)
 
-@staticmethod
+    @staticmethod
     def _rebalance(node):
         '''
         There are no test cases for the rebalance function,
