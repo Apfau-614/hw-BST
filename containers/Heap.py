@@ -158,7 +158,7 @@ class Heap(BinaryTree):
         It's possible to do it with only a single helper (or no helper at all),
         but I personally found dividing up the code into two made the most sense.
         '''
-       if self.root is None:
+        if self.root is None:
             return
         if self.num_nodes == 1:
             self.root = None
