@@ -65,7 +65,7 @@ class Heap(BinaryTree):
         '''
         if node.left:
             if node.value > node.left.value:
-                reuturn False
+                return False
             if not Heap._is_heap_satisfied(node.left):
                 return False
         if node.right:
