@@ -7,8 +7,8 @@ def test__Heap_super():
     assert isinstance(x,BinaryTree)
 
 
-# the very first thing to do whenever creating a data structure 
-# is to write a function to check if the invariant holds 
+# the very first thing to do whenever creating a data structure
+# is to write a function to check if the invariant holds
 # (in this case the Heap property)
 # and create test cases for whether that function works
 
@@ -79,7 +79,7 @@ def test__Heap_insert(xs):
         heap.insert(x)
         assert x in heap.to_list('inorder')
         assert heap.is_heap_satisfied()
-    
+
 
 @given(xs=ints)
 def test__Heap_insert_list(xs):
@@ -89,7 +89,7 @@ def test__Heap_insert_list(xs):
     assert heap.is_heap_satisfied()
     for x in xs:
         assert x in heap.to_list('inorder')
-    
+
 
 @given(xs=ints)
 def test__Heap___init__(xs):
